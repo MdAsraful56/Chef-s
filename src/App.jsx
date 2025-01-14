@@ -23,15 +23,11 @@ function App() {
     // console.log(cook);
     const newPreparing = [...preparing, cook];
     setPreparing(newPreparing);
-
   }
 
-  const [remove, setRemove] = useState([]);
 
-  const handleRemove = (cook) => {
-    console.log(cook.recipe_id);
-    const updatedRemove = remove.filter((item) => item.recipe_id !== cook.recipe_id);
-    setRemove(updatedRemove);
+  const handleRemove = (cooks) => {
+    setCooks((oldCooks) => oldCooks.filter((item) => item.recipe_id !== cooks.recipe_id))
   }
 
   return (
@@ -39,7 +35,7 @@ function App() {
       <Navber></Navber>
       <Hero></Hero>
       <Text></Text>
-      <div className="flex flex-row">
+      <div className="flex lg:flex-row flex-col">
         <Cards handleAddToCook={handleAddToCook} ></Cards>
         <div className="lg:w-1/3 w-full ml-3 border-2 rounded-3xl p-5">
           <Cooks cooks={cooks} handleRemove={handleRemove} handleAddToCook={handleAddToCook} handleAddToPreparing={handleAddToPreparing} ></Cooks>
